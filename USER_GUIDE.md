@@ -20,10 +20,11 @@ MindTab is designed to be invisible when you don't need it, and indispensable wh
 ## 🌟 Core Features Walkthrough
 
 ### 1. The Dashboard (Side Panel)
-Your command center. Open it by clicking the MindTab icon in your toolbar.
-*   **Chat Interface**: Talk to your browser.
-*   **Active Tab View**: See what the AI sees.
-*   **Quick Actions**: One-tap text shortcuts.
+Your command center, reimagined. Open it by clicking the MindTab icon in your toolbar.
+*   **Floating Chat Capsule**: A futuristic, floating input bar for seamless AI interaction.
+*   **Glassmorphism Interface**: A premium, frosted-glass aesthetic that keeps you focused.
+*   **Active Tab View**: See what the AI sees through a crystal-clear lens.
+*   **Quick Actions**: One-tap text shortcuts with neon-glow feedback.
 
 ### 2. Intelligent Grouping
 The magic button.

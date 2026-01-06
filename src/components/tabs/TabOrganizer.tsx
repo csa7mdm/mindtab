@@ -76,14 +76,15 @@ export function TabOrganizer() {
             {/* Search + Actions Bar */}
             <div className="flex-shrink-0 p-3 space-y-2 border-b" style={{ borderColor: 'var(--border-subtle)' }}>
                 {/* Search Input */}
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style={{ color: 'var(--text-muted)' }} />
+                <div className="relative group">
+                    <div className="absolute inset-0 bg-violet-500/20 rounded-xl blur-md opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted group-focus-within:text-violet-400 transition-colors" />
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search tabs..."
-                        className="input w-full pl-9 pr-3 py-2 rounded-lg text-sm"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:bg-white/10 focus:border-violet-500/30 transition-all relative z-10"
                     />
                 </div>
 

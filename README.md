@@ -25,7 +25,7 @@ Using **Next-Gen On-Device AI (Gemini Nano)**, MindTab reads your tabs, understa
 *   **💬 Chat with Your Browser**: Ask questions like *"What was that article about React hooks I opened?"* or *"Summarize the flight options I'm looking at."* MindTab answers using the content of your active tabs.
 *   **🔒 Privacy by Default**: No data leaves your machine. MindTab uses Chrome's built-in AI model, ensuring your browsing history stays yours.
 *   **⚡ Zero-Latency Performance**: Optimized for speed. Group 100+ tabs in milliseconds without hogging memory.
-*   **🎨 Beautiful Design**: A sleek, dark-mode-first interface that feels like a natural extension of your browser.
+*   **🎨 Cyber-Focus Aesthetics**: A stunning "Glass & Neon" interface designed for deep work. Features floating capsules, frosted glass panels, and a calming violet atmosphere.
 
 
 

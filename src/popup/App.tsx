@@ -47,33 +47,30 @@ export default function App() {
     ]
 
     return (
-        <div className="w-[380px] h-[600px] flex flex-col relative" style={{ background: 'var(--bg-base)' }}>
+        <div className="w-[380px] h-[600px] flex flex-col relative" style={{ background: 'radial-gradient(circle at top right, var(--bg-surface), var(--bg-base))' }}>
             {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
 
             {/* Header with Navigation */}
-            <header className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: 'var(--border-subtle)' }}>
+            <header className="flex items-center justify-between px-4 py-3 border-b border-transparent glass-panel z-10">
                 <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, var(--violet-600), var(--amber-500))' }}>
-                        <Sparkles className="w-3.5 h-3.5 text-white" />
+                    <div className="w-8 h-8 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/20" style={{ background: 'linear-gradient(135deg, var(--violet-600), var(--violet-500))' }}>
+                        <Sparkles className="w-4 h-4 text-white" />
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'var(--bg-secondary)' }}>
+                    <div className="flex gap-1 p-1 rounded-xl bg-black/20 border border-white/5">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setView(tab.id)}
                                 className={cn(
-                                    'flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all',
+                                    'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all duration-300',
                                     view === tab.id
-                                        ? 'bg-white/10 shadow-sm'
-                                        : 'hover:bg-white/5'
+                                        ? 'bg-violet-600 text-white shadow-md'
+                                        : 'hover:bg-white/5 text-text-muted hover:text-gray-200'
                                 )}
-                                style={{
-                                    color: view === tab.id ? 'var(--text-primary)' : 'var(--text-muted)'
-                                }}
                             >
-                                <tab.icon size={14} />
+                                <tab.icon size={12} />
                                 {tab.label}
                             </button>
                         ))}
@@ -84,14 +81,15 @@ export default function App() {
                 <button
                     onClick={() => setView(view === 'settings' ? 'organizer' : 'settings')}
                     className={cn(
-                        'p-2 rounded-lg transition-all relative',
-                        view === 'settings' ? 'bg-violet-500/20' : 'hover:bg-white/5'
+                        'p-2 rounded-xl transition-all relative border border-transparent',
+                        view === 'settings'
+                            ? 'bg-violet-500/10 text-violet-400 border-violet-500/20'
+                            : 'hover:bg-white/5 text-text-muted hover:text-white'
                     )}
-                    style={{ color: view === 'settings' ? 'var(--violet-400)' : 'var(--text-muted)' }}
                 >
                     {view === 'settings' ? <X className="w-4 h-4" /> : <Settings className="w-4 h-4" />}
                     {!hasValidKey && view !== 'settings' && (
-                        <span className="absolute top-1 right-1 w-2 h-2 rounded-full" style={{ background: 'var(--amber-400)' }} />
+                        <span className="absolute top-1 right-1 w-2 h-2 rounded-full shadow-[0_0_8px_rgba(251,191,36,0.5)]" style={{ background: 'var(--amber-400)' }} />
                     )}
                 </button>
             </header>

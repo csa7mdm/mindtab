@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "zip": "npm run build && zip -r mindtab-v1.0.0.zip dist"
+    "zip": "npm run build && zip -r mindtab-v0.1.0-beta.zip dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
