@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+
+/* ===== MINDTAB DESIGN SYSTEM ===== */
+/* Focus + Joy Color Palette */
+/* Primary: Violet (focus, calm productivity) */
+/* Accent: Amber (joy, warmth, energy) */
+
+:root {
+  /* Background layers */
+  --bg-base: #0c0a0f;
+  --bg-surface: #141118;
+  --bg-elevated: #1c1820;
+  --bg-overlay: #231f28;
+
+  /* Borders */
+  --border-subtle: rgba(139, 92, 246, 0.08);
+  --border-default: rgba(139, 92, 246, 0.15);
+  --border-focus: rgba(139, 92, 246, 0.4);
+
+  /* Text */
+  --text-primary: #f5f3f7;
+  --text-secondary: #a8a3b3;
+  --text-muted: #6b6477;
+
+  /* Accent colors */
+  --violet-500: #8b5cf6;
+  --violet-400: #a78bfa;
+  --violet-600: #7c3aed;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+
+  /* Semantic */
+  --success: #34d399;
+  --warning: #fbbf24;
+  --error: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+/* ===== UTILITIES ===== */
+.glass {
+  background: rgba(20, 17, 24, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+/* Primary gradient button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--violet-600) 0%, var(--violet-500) 100%);
+  color: white;
+  border: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.25);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-overlay);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+}
+
+/* Input */
+.input {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus {
+  border-color: var(--violet-500);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.15);
+}
+
+/* Skeleton Loading */
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--bg-elevated) 0%,
+      var(--bg-overlay) 50%,
+      var(--bg-elevated) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Joy accent glow */
+.glow-amber {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
+}
+
+.glow-violet {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+}
