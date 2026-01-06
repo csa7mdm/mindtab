@@ -27,6 +27,12 @@ Using **Next-Gen On-Device AI (Gemini Nano)**, MindTab reads your tabs, understa
 *   **⚡ Zero-Latency Performance**: Optimized for speed. Group 100+ tabs in milliseconds without hogging memory.
 *   **🎨 Beautiful Design**: A sleek, dark-mode-first interface that feels like a natural extension of your browser.
 
+## 🧠 Hybrid AI Architecture
+![MindTab Architecture](assets/architecture_viz.png)
+**MindTab** leverages a privacy-first, dual-engine approach:
+*   **Local Engine**: Gemini Nano (On-Device) for fast, free, private operations.
+*   **Cloud Engine**: Optional integration with OpenAI/DeepSeek for advanced reasoning.
+
 ---
 
 ## 🛠️ Installation (Beta v0.1)
