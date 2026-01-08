@@ -13,14 +13,27 @@ export function ChatPanel() {
     const { messages, isLoading, error, sendMessage, clearHistory } = useChatStore()
     const { tabs } = useTabsStore()
 
+    // Auto-scroll to bottom
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
+
+    // Auto-resize textarea logic
+    useEffect(() => {
+        if (inputRef.current) {
+            // Reset height to auto to get the correct scrollHeight
+            inputRef.current.style.height = 'auto'
+            // Set new height based on content, limiting to 120px
+            const newHeight = Math.min(inputRef.current.scrollHeight, 120)
+            inputRef.current.style.height = `${Math.max(44, newHeight)}px`
+        }
+    }, [input])
 
     const handleSend = async () => {
         if (!input.trim() || isLoading) return
         const message = input.trim()
         setInput('')
+        // Height reset is handled by useEffect when input becomes empty
         await sendMessage(message, tabs)
     }
 
@@ -139,11 +152,7 @@ export function ChatPanel() {
                     <textarea
                         ref={inputRef}
                         value={input}
-                        onChange={(e) => {
-                            setInput(e.target.value);
-                            e.target.style.height = 'auto';
-                            e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
-                        }}
+                        onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
                         placeholder="Ask MindTab..."
                         className="flex-1 bg-transparent border-none text-text-primary placeholder:text-text-muted focus:ring-0 resize-none text-sm py-2.5 max-h-24 scrollbar-hide focus:outline-none"
