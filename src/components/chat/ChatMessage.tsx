@@ -27,11 +27,18 @@ const MermaidBlock = ({ code }: { code: string }) => {
 
     useEffect(() => {
         if (code && ref.current) {
-            mermaid.render(`mermaid-${id}`, code).then(({ svg }) => {
+            // Basic sanitization: Fix common unquoted parentheses issue
+            // Replaces [Text (Info)] with ["Text (Info)"]
+            const sanitizedCode = code.replace(/\[([^"\]]+\([^"\]]+\)[^"\]]*)\]/g, '["$1"]')
+
+            mermaid.render(`mermaid-${id}`, sanitizedCode).then(({ svg }) => {
                 setSvg(svg)
             }).catch((e) => {
                 console.error('Mermaid render error:', e)
-                setSvg('<div class="text-red-500 text-xs">Failed to render diagram</div>')
+                setSvg(`<div class="text-red-400 text-xs p-2 border border-red-500/20 rounded bg-red-500/10 font-mono">
+                    Failed to render diagram<br/>
+                    <span class="opacity-50 text-[10px] mt-1 block">${e.message?.split('\n')[0]}</span>
+                </div>`)
             })
         }
     }, [code, id])

@@ -148,8 +148,12 @@ Use **Markdown** formatting for the "message" field:
 
 Example Mermaid:
 \`\`\`mermaid
-graph TD; A[Start]-->B[End];
+graph TD; A["Start (Context)"]-->B["End"];
 \`\`\`
+
+IMPORTANT: You MUST quote all node labels in Mermaid, especially if they contain parentheses or special characters.
+Correct: A["Node (Info)"]
+Incorrect: A[Node (Info)]
 
 Always be helpful, concise, and accurate. Output valid JSON only.`
     }
