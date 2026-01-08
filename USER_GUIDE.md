@@ -1,4 +1,4 @@
-# 🎓 MindTab User Guide (Beta v0.1.1)
+# 🎓 MindTab User Guide (Beta v0.1.2)
 
 
 > **"From Chaos to Clarity in One Click."**

@@ -1,5 +1,43 @@
+import { useEffect, useRef, useState, useId } from 'react'
 import { User, Bot, Layers, X, MousePointerClick, ArrowRight } from 'lucide-react'
 import type { ChatMessage as ChatMessageType } from '../../services/llm/types'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import mermaid from 'mermaid'
+
+// Initialize Mermaid
+mermaid.initialize({
+    startOnLoad: false,
+    theme: 'dark',
+    securityLevel: 'loose',
+    themeVariables: {
+        primaryColor: '#8b5cf6', // violet-500
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#7c3aed', // violet-600
+        lineColor: '#a78bfa', // violet-400
+        secondaryColor: '#1f2937', // gray-800
+        tertiaryColor: '#111827', // gray-900
+    }
+})
+
+const MermaidBlock = ({ code }: { code: string }) => {
+    const ref = useRef<HTMLDivElement>(null)
+    const [svg, setSvg] = useState('')
+    const id = useId().replace(/:/g, '')
+
+    useEffect(() => {
+        if (code && ref.current) {
+            mermaid.render(`mermaid-${id}`, code).then(({ svg }) => {
+                setSvg(svg)
+            }).catch((e) => {
+                console.error('Mermaid render error:', e)
+                setSvg('<div class="text-red-500 text-xs">Failed to render diagram</div>')
+            })
+        }
+    }, [code, id])
+
+    return <div className="mermaid-diagram my-4 overflow-x-auto bg-black/20 p-2 rounded-lg" ref={ref} dangerouslySetInnerHTML={{ __html: svg }} />
+}
 
 interface ChatMessageProps {
     message: ChatMessageType
@@ -23,8 +61,8 @@ export function ChatMessage({ message }: ChatMessageProps) {
             {/* Avatar */}
             <div
                 className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-lg ${isUser
-                        ? 'bg-gradient-to-br from-violet-600 to-violet-500 text-white'
-                        : 'glass border-violet-500/20 text-violet-400 shadow-[0_0_15px_rgba(139,92,246,0.15)]'
+                    ? 'bg-gradient-to-br from-violet-600 to-violet-500 text-white'
+                    : 'glass border-violet-500/20 text-violet-400 shadow-[0_0_15px_rgba(139,92,246,0.15)]'
                     }`}
             >
                 {isUser ? <User size={14} /> : <Bot size={16} />}
@@ -37,11 +75,45 @@ export function ChatMessage({ message }: ChatMessageProps) {
                         inline-block px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm backdrop-blur-md
                         ${isUser
                             ? 'bg-violet-600 text-white rounded-br-none shadow-[0_4px_15px_rgba(124,58,237,0.3)]'
-                            : 'glass-bubble text-text-primary rounded-bl-none border-l-2 border-violet-500'
+                            : 'glass-bubble text-text-primary rounded-bl-none border-l-2 border-violet-500 w-full'
                         }
                     `}
                 >
-                    <p className="whitespace-pre-wrap">{message.content}</p>
+                    {isUser ? (
+                        <p className="whitespace-pre-wrap">{message.content}</p>
+                    ) : (
+                        <div className="markdown-content">
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    code({ node, className, children, ...props }) {
+                                        const match = /language-(\w+)/.exec(className || '')
+                                        const isMermaid = match && match[1] === 'mermaid'
+
+                                        if (isMermaid) {
+                                            return <MermaidBlock code={String(children).trim()} />
+                                        }
+                                        return (
+                                            <code className={`${className} bg-black/20 px-1 py-0.5 rounded text-xs font-mono text-violet-200`} {...props}>
+                                                {children}
+                                            </code>
+                                        )
+                                    },
+                                    p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                    ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
+                                    ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
+                                    li: ({ children }) => <li className="text-sm/relaxed">{children}</li>,
+                                    h1: ({ children }) => <h1 className="text-lg font-bold mb-2 text-violet-300">{children}</h1>,
+                                    h2: ({ children }) => <h2 className="text-base font-bold mb-2 text-violet-300">{children}</h2>,
+                                    h3: ({ children }) => <h3 className="text-sm font-bold mb-1 text-violet-300">{children}</h3>,
+                                    blockquote: ({ children }) => <blockquote className="border-l-2 border-violet-500/50 pl-3 italic my-2 bg-white/5 py-1 rounded-r">{children}</blockquote>,
+                                    a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-violet-300 underline underline-offset-2 hover:text-violet-200">{children}</a>,
+                                }}
+                            >
+                                {message.content}
+                            </ReactMarkdown>
+                        </div>
+                    )}
                 </div>
 
                 {/* Action indicator */}

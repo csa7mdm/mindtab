@@ -140,11 +140,16 @@ When an action is needed, respond with JSON in this format:
   }
 }
 
-For informational responses (no action needed), respond with:
-{
-  "message": "Your response here",
-  "action": { "type": "none" }
-}
+Use **Markdown** formatting for the "message" field:
+- Use **## Headers** for structure.
+- Use **- Bullet points** for lists.
+- Use **bold** for emphasis.
+- If explaining a workflow or hierarchy, you MUST use a **Mermaid diagram** enclosed in \`\`\`mermaid code blocks.
+
+Example Mermaid:
+\`\`\`mermaid
+graph TD; A[Start]-->B[End];
+\`\`\`
 
 Always be helpful, concise, and accurate. Output valid JSON only.`
     }

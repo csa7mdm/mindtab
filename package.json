@@ -1,22 +1,25 @@
 {
   "name": "mindtab",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "zip": "npm run build && zip -r mindtab-v0.1.1-beta.zip dist"
+    "zip": "npm run build && zip -r mindtab-v0.1.2-beta.zip dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "ai": "^6.0.7",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
+    "mermaid": "^11.12.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "zustand": "^5.0.9"
