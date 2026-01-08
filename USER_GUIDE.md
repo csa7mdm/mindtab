@@ -1,4 +1,5 @@
-# 🎓 MindTab User Guide: Mastery of Your Digital Space
+# 🎓 MindTab User Guide (Beta v0.1.1)
+
 
 > **"From Chaos to Clarity in One Click."**
 
