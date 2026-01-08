@@ -155,7 +155,10 @@ IMPORTANT: You MUST quote all node labels in Mermaid, especially if they contain
 Correct: A["Node (Info)"]
 Incorrect: A[Node (Info)]
 
-Always be helpful, concise, and accurate. Output valid JSON only.`
+Incorrect: A[Node (Info)]
+
+If you cannot format as JSON, just output the raw Markdown response.
+Always be helpful, concise, and accurate.`
     }
 
     protected parseChatResponse(response: string): ChatResponse {
@@ -193,7 +196,7 @@ Always be helpful, concise, and accurate. Output valid JSON only.`
                 action
             }
         } catch (error) {
-            console.error('Failed to parse chat response:', error, response)
+            console.warn('Non-JSON response received, falling back to raw text:', error)
             // Fallback: return the raw response as message
             return {
                 message: response.trim(),
