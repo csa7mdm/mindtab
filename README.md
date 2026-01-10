@@ -5,7 +5,7 @@
 > **"The Sanctuary for Your Focus."**
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web_Store-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)]()
-[![Beta Release](https://img.shields.io/badge/Release-Beta_v0.1-orange?style=for-the-badge)]()
+[![Beta Release](https://img.shields.io/badge/Release-Beta_v0.1.6-orange?style=for-the-badge)]()
 [![Privacy First](https://img.shields.io/badge/Privacy-100%25_Local-green?style=for-the-badge&logo=shield)]()
 
 ---
@@ -25,13 +25,14 @@ Using **Next-Gen On-Device AI (Gemini Nano)**, MindTab reads your tabs, understa
 *   **💬 Chat with Your Browser**: Ask questions like *"What was that article about React hooks I opened?"* or *"Summarize the flight options I'm looking at."* MindTab answers using the content of your active tabs.
 *   **🔒 Privacy by Default**: No data leaves your machine. MindTab uses Chrome's built-in AI model, ensuring your browsing history stays yours.
 *   **⚡ Zero-Latency Performance**: Optimized for speed. Group 100+ tabs in milliseconds without hogging memory.
+*   **🔄 Auto-Updating Model List**: Fetches the latest free AI models from OpenRouter every 2 days, so you always have access to the best options.
 *   **🎨 Cyber-Focus Aesthetics**: A stunning "Glass & Neon" interface designed for deep work. Features floating capsules, frosted glass panels, and a calming violet atmosphere.
 
 
 
 ---
 
-## 🛠️ Installation (Beta v0.1)
+## 🛠️ Installation (Beta v0.1.6)
 MindTab is currently in **Beta**. Experience the future of browsing before anyone else.
 
 ### Option 1: Chrome Canary (Recommended for AI features)

@@ -28,6 +28,15 @@ MindTab is a **privacy-first Chrome Extension** built on a modern React tech sta
     *   Handles Prompt Engineering constraints (context windows, prompt tuning).
     *   **Privacy Boundary**: Ensures sensitive data (Titles/URLs) never leaves the `chrome.scripting` context to an external server.
 
+### 4. Model Registry (Auto-Updating)
+*   **Role**: Dynamically fetches and caches available AI models.
+*   **Features**:
+    *   Fetches free models from OpenRouter API every 2 days.
+    *   Filters for $0 cost models only.
+    *   Caches in `chrome.storage.local` for persistence.
+    *   Graceful fallback to hardcoded list if API fails.
+*   **File**: `src/services/llm/modelRegistry.ts`
+
 ---
 
 ## 📊 Data Flow Diagram
@@ -68,9 +77,10 @@ graph TD
 ```text
 src/
 ├── background/      # Service Worker entry point
-├── components/      # React UI Components (Chat, Common)
+├── components/      # React UI Components (Chat, Common, Settings)
 ├── services/        # Business Logic
-│   ├── llm/         # AI Adapters (ChromeAI, Base)
+│   ├── llm/         # AI Adapters (ChromeAI, OpenRouter, Base)
+│   │   └── modelRegistry.ts  # Auto-updating model cache
 │   └── tabs/        # Tab Management Logic
 ├── stores/          # State Management (Zustand)
 ├── styles/          # Tailwind & Global Styles

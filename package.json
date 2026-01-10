@@ -1,14 +1,14 @@
 {
   "name": "mindtab",
   "private": true,
-  "version": "0.1.5",
+  "version": "0.1.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "zip": "npm run build && zip -r mindtab-v0.1.5-beta.zip dist"
+    "zip": "npm run build && zip -r mindtab-v0.1.6-beta.zip dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
