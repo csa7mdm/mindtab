@@ -71,6 +71,12 @@ graph TD
     *   `activeTab`: Only requested when user acts on a specific tab.
     *   `scripting`: Used strictly for DOM text extraction (read-only).
 
+## 🛡️ Robustness & Error Handling
+1.  **Retry Logic**: API requests automatically retry with exponential backoff (up to 2 retries).
+2.  **Detailed Error Messages**: HTTP status codes mapped to user-friendly explanations.
+3.  **Fallback Suggestions**: When a model fails, users receive suggestions for reliable alternatives.
+4.  **Graceful Degradation**: Non-JSON AI responses are displayed as raw Markdown instead of erroring.
+
 ---
 
 ## 📂 Project Structure
