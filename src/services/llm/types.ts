@@ -72,23 +72,24 @@ export const PROVIDER_MODELS: Record<LLMProvider, string[]> = {
         'google/gemini-2.0-flash-exp:free',
         'google/learnlm-1.5-pro-experimental:free',
         'google/gemma-2-9b-it:free',
-        // Good reasoning
+        // Good reasoning - Llama
         'meta-llama/llama-3.3-70b-instruct:free',
         'meta-llama/llama-3.2-3b-instruct:free',
-        'meta-llama/llama-3.2-1b-instruct:free',
         'meta-llama/llama-3.1-8b-instruct:free',
-        // Other capable free models
-        'qwen/qwen-2.5-72b-instruct:free',
-        'qwen/qwen-2.5-7b-instruct:free',
-        'qwen/qwen-2.5-coder-32b-instruct:free',
-        'microsoft/phi-3-medium-128k-instruct:free',
-        'microsoft/phi-3-mini-128k-instruct:free',
-        'mistralai/mistral-7b-instruct:free',
-        'huggingfaceh4/zephyr-7b-beta:free',
-        'openchat/openchat-7b:free',
-        'nousresearch/hermes-3-llama-3.1-405b:free',
+        // Qwen3 - Current free models
+        'qwen/qwen3-30b-a3b:free',
+        'qwen/qwen3-235b-a22b:free',
+        'qwen/qwen3-coder-480b-a35b-instruct:free',
+        // DeepSeek - Current free models
+        'deepseek/deepseek-chat-v3-0324:free',
+        'deepseek/deepseek-r1:free',
+        'deepseek/deepseek-r1-0528:free',
         'deepseek/deepseek-r1-distill-llama-70b:free',
         'deepseek/deepseek-r1-distill-qwen-32b:free',
+        // Other capable free models
+        'microsoft/phi-3-medium-128k-instruct:free',
+        'mistralai/mistral-7b-instruct:free',
+        'nousresearch/hermes-3-llama-3.1-405b:free',
     ],
     gemini: [
         'gemini-2.0-flash',
