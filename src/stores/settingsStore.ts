@@ -3,6 +3,7 @@ import type { LLMProvider } from '@/services/llm/types'
 import { DEFAULT_MODELS, PROVIDER_MODELS } from '@/services/llm/types'
 import { storageService } from '@/services/storage'
 import { llmService } from '@/services/llm'
+import { modelRegistry } from '@/services/llm/modelRegistry'
 
 interface SettingsState {
     provider: LLMProvider
@@ -43,11 +44,18 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
                 }
             }
 
+            // Fetch dynamic models for OpenRouter (with 2-day cache)
+            let availableModels = PROVIDER_MODELS[provider]
+            if (provider === 'openrouter') {
+                const apiKey = await storageService.getApiKey(provider)
+                availableModels = await modelRegistry.getOpenRouterModels(apiKey || undefined)
+            }
+
             set({
                 provider,
                 model,
                 hasValidKey: hasKey,
-                availableModels: PROVIDER_MODELS[provider],
+                availableModels,
             })
         } catch (error) {
             console.error('Failed to initialize settings:', error)
@@ -58,10 +66,21 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
     setProvider: async (provider: LLMProvider) => {
         const model = DEFAULT_MODELS[provider]
 
+        // Fetch dynamic models for OpenRouter (with 2-day cache)
+        let availableModels = PROVIDER_MODELS[provider]
+        if (provider === 'openrouter') {
+            try {
+                const apiKey = await storageService.getApiKey(provider)
+                availableModels = await modelRegistry.getOpenRouterModels(apiKey || undefined)
+            } catch (error) {
+                console.warn('Failed to fetch OpenRouter models:', error)
+            }
+        }
+
         set({
             provider,
             model,
-            availableModels: PROVIDER_MODELS[provider],
+            availableModels,
         })
 
         try {
